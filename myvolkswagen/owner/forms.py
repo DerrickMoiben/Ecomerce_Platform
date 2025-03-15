@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django import forms
 
 class OwnerCreationForm(UserCreationForm):
     class Meta:
@@ -7,7 +8,6 @@ class OwnerCreationForm(UserCreationForm):
         fields = ['first_name','username', 'email', 'password1', 'password2']
 
 
-class OwnerLoginForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ['username', 'password']
+class OwnerLoginForm(forms.Form):
+    username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder':'Enter your username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Enter your password'}))
