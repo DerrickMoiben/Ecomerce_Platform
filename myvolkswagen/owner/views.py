@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from .forms import OwnerCreationForm, OwnerLoginForm, ProductsForm
+from .forms import OwnerCreationForm, OwnerLoginForm, ProductsForm, ProductsImagesForm, productImagesFormset
 from django.contrib.auth import authenticate
 from django.contrib.auth import login   
 from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth import logout
+from .models import Products
 
 def homepage(requst):
     return render(requst, 'homepage.html')
@@ -57,13 +58,31 @@ def owner_dashboard(request):
 @csrf_protect
 def add_products(request):
     if request.method == 'POST':
-        form = ProductsForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+        product_form = ProductsForm(request.POST)
+        formset = productImagesFormset(request.POST, request.FILES)
+        if product_form.is_valid() and formset.is_valid():
+            #save the prodcut form first
+            product = product_form.save()
+            #set the istance of the formset to the newly create product
+            formset.instance = product
+            formset.save()
             messages.success(request, 'Product added successfully')
             return redirect('owner_dashboard')  
         else:
             messages.error(request, 'Invalid information')
     else:
-        form = ProductsForm()
-    return render(request, 'add_products.html', {'form': form})
+        product_form = ProductsForm()
+        formset = productImagesFormset()
+
+    context = {
+        'product_form': product_form,
+        'formset': formset
+    }
+    return render(request, 'add_products.html', context)
+
+def all_products(request):
+    products = Products.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, 'all_products.html', context)

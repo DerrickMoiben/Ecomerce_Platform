@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Products
+from .models import Products, ProductsImages
+from django.forms import inlineformset_factory
 
 class OwnerCreationForm(UserCreationForm):
     class Meta:
@@ -18,4 +19,25 @@ class OwnerLoginForm(forms.Form):
 class ProductsForm(forms.ModelForm):
     class Meta:
         model = Products
-        fields = '__all__'
+        fields = ['name', 'price', 'description', 'availablity']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder':'Enter product name'}),
+            'price': forms.NumberInput(attrs={'placeholder':'Enter product price'}),
+            'description': forms.Textarea(attrs={'placeholder':'Enter product description'}),
+        }
+
+
+class ProductsImagesForm(forms.ModelForm):
+    class Meta:
+        model = ProductsImages
+        fields = ['image']
+
+
+#to handle formset for images upto 10 images
+productImagesFormset = inlineformset_factory(
+    Products,
+    ProductsImages,
+    form=ProductsImagesForm,
+    extra=10,
+    can_delete=True #to allow deleting images
+)
