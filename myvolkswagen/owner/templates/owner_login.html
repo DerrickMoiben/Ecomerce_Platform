@@ -11,5 +11,14 @@
         {{ form.as_p }}
         <input type="submit" value="submit">
     </form>
+   
+    <a href="{% url 'owner_singup' %}">If you have no account signup</a>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>

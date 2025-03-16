@@ -20,6 +20,6 @@ from owner.views import homepage
 from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage),
+    path('', homepage, name='homepage'),
     path('owner/', include('owner.urls')),
 ]
