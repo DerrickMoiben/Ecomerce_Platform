@@ -4,4 +4,6 @@ urlpatterns = [
     path('owner_singup/', views.owner_singup, name='owner_singup'),
     path('owner_login/', views.owner_login, name='owner_login'),
     path('owner_logout/', views.owner_logout, name='owner_logout'),
+    path('owner_dashboard/', views.owner_dashboard, name='owner_dashboard'),
+    path('add_products/', views.add_products, name='add_products'),
 ]

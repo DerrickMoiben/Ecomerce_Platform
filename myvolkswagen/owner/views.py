@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import OwnerCreationForm, OwnerLoginForm
+from .forms import OwnerCreationForm, OwnerLoginForm, ProductsForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login   
 from django.contrib.auth import logout
@@ -35,7 +35,7 @@ def owner_login(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'You are now logged in successfully')
-                return redirect('homepage')
+                return redirect('owner_dashboard')
             else:
                 messages.error(request, 'Invalid username or password')
     else:
@@ -49,3 +49,21 @@ def owner_logout(request):
     logout(request)
     messages.success(request, 'You are now logged out')
     return redirect(owner_login)
+
+
+def owner_dashboard(request):
+    return render(request, 'owner_dashboard.html')
+
+@csrf_protect
+def add_products(request):
+    if request.method == 'POST':
+        form = ProductsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product added successfully')
+            return redirect('owner_dashboard')  
+        else:
+            messages.error(request, 'Invalid information')
+    else:
+        form = ProductsForm()
+    return render(request, 'add_products.html', {'form': form})
