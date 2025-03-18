@@ -23,6 +23,7 @@
             <td>
                 {% if product.images.all %}
                     {% for image in product.images.all %}
+                        <p>Image URL: {{ image.image.url }}</p> <!-- Debugging output -->
                         <img src="{{ image.image.url }}" alt="{{ product.name }}" width="100"><br>
                     {% endfor %}
                 {% else %}
@@ -31,7 +32,8 @@
             </td>
             <td>
                 <!-- Static image reference -->
-                <img src="{% static 'owner/images/Screenshot_from_2025-03-13_17-36-04.png' %}" alt="Static Example" width="100">
+                <img src="{% static 'images/images1.png' %}" alt="Static Example" width="100">
+                <img src="/media/products/Screenshot_from_2025-03-13_17-36-04.png" alt="Audi Q3" width="100">
             </td>
             <td>{{ product.description }}</td>
             <td>{{ product.availablity }}</td>
@@ -40,16 +42,8 @@
     </table>
 
     <!-- Another media image example -->
-    <img src="/media/products/Screenshot_from_2025-03-08_11-33-26.png" alt="Media Example" width="100">
-
-
-        <!-- Media Image Example -->
-    {% for image in product.images.all %}
-    <img src="{{ image.image.url }}" alt="{{ product.name }}" width="100"><br>
-    {% endfor %}
-
-    <!-- Static Image Example -->
-    <img src="{% static 'owner/images/Screenshot_from_2025-03-13_17-36-04.png' %}" alt="Static Example" width="100">
+ <img src="{% static 'images/images2.png' %}" alt="Static Example" width="100">
+ <img src="{% media 'products/im.png' %}" alt="Audi Q3">
 
 </body>
 </html>
