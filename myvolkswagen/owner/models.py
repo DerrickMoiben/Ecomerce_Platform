@@ -1,7 +1,6 @@
 from django.db import models
 
-# Create your models here.
-class Products(models.Model):
+class Product(models.Model):
     AVAILABILITY_CHOICES = [
         ('In Stock', 'In Stock'),
         ('Out of Stock', 'Out of Stock')
@@ -9,14 +8,21 @@ class Products(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
     description = models.TextField()
-    availablity = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='In Stock')
+    availability = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='In Stock')
+    
+    # Image fields (up to 6)
+    image1 = models.ImageField(upload_to='products/images/', blank=True, null=True)
+    image2 = models.ImageField(upload_to='products/images/', blank=True, null=True)
+    image3 = models.ImageField(upload_to='products/images/', blank=True, null=True)
+    image4 = models.ImageField(upload_to='products/images/', blank=True, null=True)
+    image5 = models.ImageField(upload_to='products/images/', blank=True, null=True)
+    image6 = models.ImageField(upload_to='products/images/', blank=True, null=True)
 
     def __str__(self):
         return self.name
     
-class ProductsImages(models.Model):
-    product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='products')
 
-    def __str__(self):
-        return self.product.name
+class Movie(models.Model):
+    name  = models.CharField(max_length=100)
+    price = models.FloatField()
+    image = models.ImageField(upload_to='owner/files/covers')

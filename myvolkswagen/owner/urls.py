@@ -10,4 +10,7 @@ urlpatterns = [
     path('owner_dashboard/', views.owner_dashboard, name='owner_dashboard'),
     path('add_products/', views.add_products, name='add_products'),
     path('all_products/', views.all_products, name='all_products'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

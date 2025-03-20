@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from .forms import OwnerCreationForm, OwnerLoginForm, ProductsForm, ProductsImagesForm, productImagesFormset
+from .forms import OwnerCreationForm, OwnerLoginForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login   
 from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth import logout
-from .models import Products
+from .models import Product
 
 def homepage(requst):
     return render(requst, 'homepage.html')
@@ -55,34 +55,44 @@ def owner_logout(request):
 def owner_dashboard(request):
     return render(request, 'owner_dashboard.html')
 
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ProductForm
+
 @csrf_protect
 def add_products(request):
     if request.method == 'POST':
-        product_form = ProductsForm(request.POST)
-        formset = productImagesFormset(request.POST, request.FILES)
-        if product_form.is_valid() and formset.is_valid():
-            #save the prodcut form first
-            product = product_form.save()
-            #set the istance of the formset to the newly create product
-            formset.instance = product
-            formset.save()
-            messages.success(request, 'Product added successfully')
-            return redirect('owner_dashboard')  
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            
+            # Assign up to 6 images to image1-image6 fields
+            images = request.FILES.getlist('images')
+            for i, img in enumerate(images[:6]):
+                setattr(product, f'image{i+1}', img)
+            
+            product.save()
+            messages.success(request, 'Product and images saved!')
+            return redirect('all_products')
         else:
-            messages.error(request, 'Invalid information')
+            messages.error(request, 'Error: Check your inputs.')
     else:
-        product_form = ProductsForm()
-        formset = productImagesFormset()
+        form = ProductForm()
+    
+    return render(request, 'add_products.html', {'form': form})
 
-    context = {
-        'product_form': product_form,
-        'formset': formset
-    }
-    return render(request, 'add_products.html', context)
+from django.shortcuts import render
+from .models import Product
 
 def all_products(request):
-    products = Products.objects.all()
-    context = {
-        'products': products
-    }
+    products = Product.objects.all()
+    context = {'products': products}
     return render(request, 'all_products.html', context)
+
+from  .models import Movie
+
+def movie(request, movie_id):
+    movie = Movie.objects.get(pk=movie_id)
+    context = {'movie': movie}
+    return render(request, 'movie.html', context)  

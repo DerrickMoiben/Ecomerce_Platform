@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Products, ProductsImages
+from .models import Product
 from django.forms import inlineformset_factory
 
 class OwnerCreationForm(UserCreationForm):
@@ -16,28 +16,23 @@ class OwnerLoginForm(forms.Form):
 
 
 
-class ProductsForm(forms.ModelForm):
+
+from django import forms
+from .models import Product
+
+class ProductForm(forms.ModelForm):
+    images = forms.ImageField(
+        widget=forms.FileInput(),  # Use FileInput, not ClearableFileInput
+        required=False,
+        help_text='Upload up to 6 images.'
+    )
+
     class Meta:
-        model = Products
-        fields = ['name', 'price', 'description', 'availablity']
-        widgets = {
-            'name': forms.TextInput(attrs={'placeholder':'Enter product name'}),
-            'price': forms.NumberInput(attrs={'placeholder':'Enter product price'}),
-            'description': forms.Textarea(attrs={'placeholder':'Enter product description'}),
-        }
+        model = Product
+        fields = ['name', 'price', 'description', 'availability']
 
-
-class ProductsImagesForm(forms.ModelForm):
-    class Meta:
-        model = ProductsImages
-        fields = ['image']
-
-
-#to handle formset for images upto 10 images
-productImagesFormset = inlineformset_factory(
-    Products,
-    ProductsImages,
-    form=ProductsImagesForm,
-    extra=10,
-    can_delete=True #to allow deleting images
-)
+    def clean_images(self):
+        images = self.files.getlist('images')
+        if len(images) > 6:
+            raise forms.ValidationError("You can upload a maximum of 6 images.")
+        return images

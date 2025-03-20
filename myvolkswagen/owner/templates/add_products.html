@@ -1,13 +1,5 @@
-{% load static %}
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ product_form.as_p }}
-    {{ formset.management_form }}
-    {% for form in formset %}
-        {{ form.as_p }}
-    {% endfor %}
+    {{ form.as_p }}
     <button type="submit">Save Product</button>
 </form>
-
-
-<img src="{% static '/images/images1.png' %}" alt="Static Example" width="100">

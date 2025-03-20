@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,41 +6,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owner Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-image: url("{% static 'images/key.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 26px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+        .input-container {
+            position: relative;
+            width: 90%;
+        }
+        .input-container input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .input-container input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .input-container i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #007bff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .errorlist {
+            color: red;
+            list-style: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
    <div class="form-container">
          <h2>Owner Login</h2>
-         <form action="{% url 'owner_login' %}" method="post"></form>
+
+         <form method="post">
               {% csrf_token %}
+              
               <div class="form-group">
-                <label for="id_username">username</label>
+                <label for="id_username">Username</label>
                 <div class="input-container">
-                    <i class="fas fa-user">
-                    <input type="text" name="username" id="id_username" placeholder="Enter you username" required>
-                    </i>
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" id="id_username" placeholder="Enter your username" required>
                 </div>
               </div>
+
               <div class="form-group">
-                <label for="id_password1">Password</label>
+                <label for="id_password">Password</label>
                 <div class="input-container">
-                    <i class="fas fa-lock">
-                    <input type="password" name="password" id="id_password1" placeholder="Enter you password" required>
-                    </i>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="id_password" placeholder="Enter your password" required>
                 </div>
               </div>
-              <button type="submit">Login</button>
-              <input type="button" value="submit">
+
+            <button type="submit">Login</button>
         </form>
 
+        <a href="{% url 'owner_singup' %}">Don't have an account? Sign up</a>
+
+        {% if messages %}
+            <ul class="errorlist">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
    </div>
-   
-    <a href="{% url 'owner_singup' %}">If you have no account signup</a>
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 </body>
 </html>

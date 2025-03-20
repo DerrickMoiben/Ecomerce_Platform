@@ -1,49 +1,39 @@
 {% load static %}
+{% load custom_filters %}  <!-- Load your custom filter here -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products</title>
 </head>
 <body>
-    <table border="1" cellpadding="10" bordercolor="black">
+    <table border="1" cellpadding="10">
         <tr>
             <th>Name</th>
             <th>Price</th>
-            <th>Media Image(s)</th>
-            <th>Static Image Example</th>
+            <th>Images</th>
             <th>Description</th>
             <th>Availability</th>
         </tr>
         {% for product in products %}
         <tr>
             <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
+            <td>${{ product.price }}</td>
             <td>
-                {% if product.images.all %}
-                    {% for image in product.images.all %}
-                        <p>Image URL: {{ image.image.url }}</p> <!-- Debugging output -->
-                        <img src="{{ image.image.url }}" alt="{{ product.name }}" width="100"><br>
-                    {% endfor %}
-                {% else %}
-                    No image available.
-                {% endif %}
-            </td>
-            <td>
-                <!-- Static image reference -->
-                <img src="{% static 'images/images1.png' %}" alt="Static Example" width="100">
-                <img src="/media/products/Screenshot_from_2025-03-13_17-36-04.png" alt="Audi Q3" width="100">
+                {% for i in "123456" %}
+                    {% with image=product|getattr:"image"|add:i %}
+                        {% if image %}
+                            <!-- Debug: Print the image path -->
+                            <p>Image URL: {{ image.url }}</p>
+                            <img src="{{ image.url }}" alt="{{ product.name }}" width="100">
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
             </td>
             <td>{{ product.description }}</td>
-            <td>{{ product.availablity }}</td>
+            <td>{{ product.availability }}</td>
         </tr>
         {% endfor %}
     </table>
-
-    <!-- Another media image example -->
- <img src="{% static 'images/images2.png' %}" alt="Static Example" width="100">
- <img src="{% media 'products/im.png' %}" alt="Audi Q3">
-
 </body>
 </html>
