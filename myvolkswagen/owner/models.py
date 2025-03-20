@@ -22,12 +22,8 @@ class Product(models.Model):
     availability = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='In Stock')
     
     # Image fields (up to 6)
-    image1 = models.ImageField(upload_to=filepath, blank=True, null=True)
+    image = models.ImageField(upload_to=filepath, blank=True, null=True)
+    
     def __str__(self):
         return self.name
     
-
-class Movie(models.Model):
-    name  = models.CharField(max_length=100)
-    price = models.FloatField()
-    image = models.ImageField(upload_to='owner/files/covers')

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from owner.views import homepage, movie
+from owner.views import homepage
 from owner import views
 from django.urls import include
 from django.conf.urls.static import static
@@ -26,7 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage, name='homepage'),
     path('owner/', include('owner.urls')),
-    path('movies/<int:movie_id>', views.movie, name='movie'),
     path('customer/', include('customer.urls')),
 ]
 

@@ -1,9 +1,4 @@
 from django.contrib import admin
-from owner.models import Product, Movie
+from .models import Product
 
-
-class MoveAdmin(admin.ModelAdmin):
-    readonly_fields = ('id',)
-
-admin.site.register(Movie, MoveAdmin)
 admin.site.register(Product)

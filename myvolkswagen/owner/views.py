@@ -70,7 +70,7 @@ def add_products(request):
         prod.availability = request.POST['availability']
 
         if len (request.FILES) != 0:
-            prod.image1 = request.FILES['image1']
+            prod.image = request.FILES['image']
         prod.save()
         messages.success(request, 'Product added successfully')
         return redirect('all_products')
@@ -81,12 +81,8 @@ from .models import Product
 
 def all_products(request):
     products = Product.objects.all()
-    context = {'products': products}
-    return render(request, 'all_products.html', context)
+    return render(request, 'all_products.html', {'products': products})
 
-from  .models import Movie
-
-def movie(request, movie_id):
-    movie = Movie.objects.get(pk=movie_id)
-    context = {'movie': movie}
-    return render(request, 'movie.html', context)  
+def view_product(request):
+    products = Product.objects.all()
+    return render(request, 'view_products.html', {'products': products})
