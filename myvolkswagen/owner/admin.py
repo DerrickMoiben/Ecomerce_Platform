@@ -6,3 +6,4 @@ class MoveAdmin(admin.ModelAdmin):
     readonly_fields = ('id',)
 
 admin.site.register(Movie, MoveAdmin)
+admin.site.register(Product)

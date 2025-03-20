@@ -1,5 +1,16 @@
 from django.db import models
 
+
+from django.db import models
+from datetime import datetime
+import os
+
+def filepath(request, filename):
+    old_filename = filename
+    timenow = datetime.now().strftime('%Y%m%d%H%M%S')
+    filename = "%s%s" % (timenow, old_filename)
+    return os.path.join('uploads/', filename)
+
 class Product(models.Model):
     AVAILABILITY_CHOICES = [
         ('In Stock', 'In Stock'),
@@ -11,13 +22,7 @@ class Product(models.Model):
     availability = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='In Stock')
     
     # Image fields (up to 6)
-    image1 = models.ImageField(upload_to='products/images/', blank=True, null=True)
-    image2 = models.ImageField(upload_to='products/images/', blank=True, null=True)
-    image3 = models.ImageField(upload_to='products/images/', blank=True, null=True)
-    image4 = models.ImageField(upload_to='products/images/', blank=True, null=True)
-    image5 = models.ImageField(upload_to='products/images/', blank=True, null=True)
-    image6 = models.ImageField(upload_to='products/images/', blank=True, null=True)
-
+    image1 = models.ImageField(upload_to=filepath, blank=True, null=True)
     def __str__(self):
         return self.name
     

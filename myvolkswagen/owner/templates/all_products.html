@@ -1,39 +1,29 @@
-{% load static %}
-{% load custom_filters %}  <!-- Load your custom filter here -->
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>All Products</title>
-</head>
-<body>
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Images</th>
-            <th>Description</th>
-            <th>Availability</th>
-        </tr>
-        {% for product in products %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>${{ product.price }}</td>
-            <td>
-                {% for i in "123456" %}
-                    {% with image=product|getattr:"image"|add:i %}
-                        {% if image %}
-                            <!-- Debug: Print the image path -->
-                            <p>Image URL: {{ image.url }}</p>
-                            <img src="{{ image.url }}" alt="{{ product.name }}" width="100">
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.availability }}</td>
-        </tr>
-        {% endfor %}
+<div class="card-body">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Descritpion</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in products %}
+                <tr>
+                    <td>{{ p.id }} </td>
+                    <td>{{ p.name }} </td>
+                    <td>{{ p.description }} </td>
+                    <td>{{ p.price }} </td>
+                    {% if p.image %}
+                        <td>
+                            <img src="{{ p.image.url }}" alt="" class="prod-size" width="50px">
+                        </td>
+                    {% else %}
+                        <td>No Image</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
-</body>
-</html>

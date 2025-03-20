@@ -63,24 +63,18 @@ from .forms import ProductForm
 @csrf_protect
 def add_products(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save(commit=False)
-            
-            # Assign up to 6 images to image1-image6 fields
-            images = request.FILES.getlist('images')
-            for i, img in enumerate(images[:6]):
-                setattr(product, f'image{i+1}', img)
-            
-            product.save()
-            messages.success(request, 'Product and images saved!')
-            return redirect('all_products')
-        else:
-            messages.error(request, 'Error: Check your inputs.')
-    else:
-        form = ProductForm()
-    
-    return render(request, 'add_products.html', {'form': form})
+        prod = Product()
+        prod.name = request.POST['name']
+        prod.price = request.POST['price']
+        prod.description = request.POST['description']
+        prod.availability = request.POST['availability']
+
+        if len (request.FILES) != 0:
+            prod.image1 = request.FILES['image1']
+        prod.save()
+        messages.success(request, 'Product added successfully')
+        return redirect('all_products')
+    return render(request, 'add_products.html')
 
 from django.shortcuts import render
 from .models import Product
