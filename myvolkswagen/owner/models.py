@@ -21,9 +21,12 @@ class Product(models.Model):
     description = models.TextField()
     availability = models.CharField(max_length=50, choices=AVAILABILITY_CHOICES, default='In Stock')
     
-    # Image fields (up to 6)
-    image = models.ImageField(upload_to=filepath, blank=True, null=True)
     
     def __str__(self):
         return self.name
     
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+    image = models.FileField(upload_to=filepath, blank=True, null=True)
+
+

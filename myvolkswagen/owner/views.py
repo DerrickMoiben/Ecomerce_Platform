@@ -59,20 +59,37 @@ def owner_dashboard(request):
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ProductForm
+from .models import Product, ProductImage
 
-@csrf_protect
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_protect
+from .models import Product, ProductImage
+from .forms import ProductForm, ProductImageForm, ProductCreateForm
+
+
 def add_products(request):
     if request.method == 'POST':
-       form = ProductForm(request.POST, request.FILES)
-       if form.is_valid():
-           form.save()
-           messages.success(request, 'Product added successfully')
-           return redirect('all_products')
-       else:
-           messages.error(request, 'Invalid information')
+        form = ProductCreateForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Create the product
+            product = Product.objects.create(
+                name=form.cleaned_data['name'],
+                price=form.cleaned_data['price'],
+                description=form.cleaned_data['description'],
+                availability=form.cleaned_data['availability']
+            )
+
+            # Handle the images
+            images = request.FILES.getlist('images')
+            for image in images:
+                ProductImage.objects.create(product=product, image=image)
+
+            return redirect('product_list')  # Replace 'product_list' with your product list view name
     else:
-        form = ProductForm()
-    return render(request, 'add_products.html', {'form': form})
+        form = ProductCreateForm()
+    return render(request, 'add_product.html', {'form': form})
+
 
 from django.shortcuts import render
 from .models import Product
