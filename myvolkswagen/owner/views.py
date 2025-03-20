@@ -58,41 +58,33 @@ def owner_dashboard(request):
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import ProductForm
-from .models import Product, ProductImage
-
-from django.shortcuts import render, redirect
-from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
 from .models import Product, ProductImage
-from .forms import ProductForm, ProductImageForm, ProductCreateForm
+from .forms import ProductForm, ProductImageForm
 
-
+@csrf_protect
 def add_products(request):
     if request.method == 'POST':
-        form = ProductCreateForm(request.POST, request.FILES)
+        form = ProductForm(request.POST)
+        images = request.FILES.getlist('images')  # Get multiple images
+
         if form.is_valid():
-            # Create the product
-            product = Product.objects.create(
-                name=form.cleaned_data['name'],
-                price=form.cleaned_data['price'],
-                description=form.cleaned_data['description'],
-                availability=form.cleaned_data['availability']
-            )
+            product = form.save()  # Save product first
 
-            # Handle the images
-            images = request.FILES.getlist('images')
-            for image in images:
-                ProductImage.objects.create(product=product, image=image)
+            # Save each image
+            for img in images:
+                ProductImage.objects.create(product=product, image=img)
 
-            return redirect('product_list')  # Replace 'product_list' with your product list view name
+            messages.success(request, 'Product added successfully with images!')
+            return redirect('all_products')
+        else:
+            messages.error(request, 'Error adding product. Please check the form.')
+
     else:
-        form = ProductCreateForm()
-    return render(request, 'add_product.html', {'form': form})
+        form = ProductForm()
+    
+    return render(request, 'add_products.html', {'form': form})
 
-
-from django.shortcuts import render
-from .models import Product
 
 def all_products(request):
     products = Product.objects.all()

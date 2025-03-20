@@ -1,5 +1,17 @@
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Product</button>
-</form>
+
+    <h2>Add Product</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: green;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <label for="images">Upload Images:</label>
+        <input type="file" name="images" multiple required>  <!-- Allow multiple images -->
+        
+        <button type="submit">Save Product</button>
+    </form>
