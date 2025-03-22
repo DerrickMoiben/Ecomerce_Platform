@@ -90,6 +90,29 @@ def all_products(request):
     products = Product.objects.all()
     return render(request, 'all_products.html', {'products': products})
 
-def view_product(request):
-    products = Product.objects.all()
-    return render(request, 'view_products.html', {'products': products})
+def update_product(request, product_id):
+    product = Product.objects.get(id=product_id)
+    form = ProductForm(instance=product)
+    images = ProductImage.objects.filter(product=product)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        new_images = request.FILES.getlist('images')
+        if form.is_valid():
+            product = form.save()
+            for img in new_images:
+                ProductImage.objects.create(product=product, image=img)
+            messages.success(request, 'Product updated successfully')
+            return redirect('all_products')
+        else:
+            messages.error(request, 'Error updating product. Please check the form')
+    context = {
+        'form': form,
+        'images': images,
+    }
+    return render(request, 'update_product.html', context)
+
+def delete_product(request, product_id):
+    product = Product.objects.get(id=product_id)
+    product.delete()
+    messages.success(request, 'Product deleted successfully')
+    return redirect('all_products')
