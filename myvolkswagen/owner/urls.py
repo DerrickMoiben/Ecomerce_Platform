@@ -10,7 +10,6 @@ urlpatterns = [
     path('owner_dashboard/', views.owner_dashboard, name='owner_dashboard'),
     path('add_products/', views.add_products, name='add_products'),
     path('all_products/', views.all_products, name='all_products'),
-    path('view_product/', views.view_product, name='view_product'),
 ]
 
 if settings.DEBUG:
