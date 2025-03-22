@@ -24,6 +24,7 @@
                             {% endfor %}
                         </div>
                         <p><a href="{%url 'update_product' product.id %}">update the product</a></p>
+                        <p><a href="{% url 'delete_product' product.id %}">Delete Product</a></p>
                     </div>
                 </div>
             </div>
