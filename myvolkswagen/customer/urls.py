@@ -5,9 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('add_product/', views.add_product, name='add_product'),
-    path('view_products/', views.view_products, name='view_products'),
-
+    path('landingpage/', views.landingpage, name='landingpage'),
 ]
 
 if settings.DEBUG:
