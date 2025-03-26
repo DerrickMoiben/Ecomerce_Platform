@@ -1,0 +1,168 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: rgb(207, 217, 231);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    z-index: 1000;
+    padding: 1px 0;
+    margin: 60px 0;
+    border-radius: 50px;
+
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    list-style-type: none;
+    padding: 0;
+    text-decoration: none;
+    color: black;
+}
+
+nav ul li {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul li:last-child {
+    background-color: rgb(243, 54, 6);
+    border-radius: 50px;
+    align-items: right;
+}
+
+
+/* hero section */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.hero-section .hero-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+.hero-section .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+}
+
+.hero-section .hero-content h1 {
+    font-size: 3.5rem;
+    color:  rgb(207, 217, 231);
+    margin-bottom: 100px;
+}
+
+.hero-section .hero-content p {
+    font-size: 1.5rem;
+    color:  rgb(207, 217, 231);
+    margin-bottom: 80px;
+}
+
+.hero-section .hero-content button {
+    background-color: rgb(243, 54, 6);
+    color:  rgb(207, 217, 231);
+    padding: 10px 20px;
+    border: lightblue;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.hero-section .hero-content button:hover {
+    background-color: rgb(243, 54, 6);
+    color:  rgb(207, 217, 231);
+}
+
+
+
+/* About section */
+.about-section {
+    background-color: rgb(243, 54, 6); /* Red background */
+    width: 60%; /* Larger width to accommodate more content */
+    height: auto; /* Allow height to adjust based on content */
+    display: flex; /* Use Flexbox for layout */
+    justify-content: space-between; /* Space out text and image */
+    align-items: flex-start; /* Align items to the top */
+    border-radius: 20px; /* Rounded corners */
+    margin: 50px auto; /* Center the section horizontally and add vertical spacing */
+    padding: 40px; /* Add padding for spacing inside the section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better appearance */
+    gap: 20px; /* Add spacing between text and image */
+}
+
+/* About text content */
+.about-section .about-content {
+    flex: 2; /* Take up more space for the text */
+    color: black; /* White text for contrast */
+    padding-right: 20px; /* Add spacing between text and image */
+    text-align: left; /* Align text to the left */
+    gap: 40px;
+}
+
+.about-section .about-content h1 {
+    font-size: 3rem; /* Adjust heading size */
+    margin-bottom: 20px; /* Add spacing below the heading */
+    font-family: 'Open Sans', sans-serif;
+}
+
+.about-section .about-content h3 {
+    font-size: 1.5rem; /* Adjust subheading size */
+    margin-top: 20px; /* Add spacing above subheadings */
+    margin-bottom: 10px; /* Add spacing below subheadings */
+}
+
+.about-section .about-content p {
+    font-size: 1.2rem; /* Adjust paragraph size */
+    line-height: 1.6; /* Improve readability */
+    margin-bottom: 20px; /* Add spacing below paragraphs */
+}
+
+/* About image */
+.about-section .about-image {
+    flex: 1; /* Smaller space for the image */
+    max-width: 400px; /* Limit the width of the image container */
+    height: auto; /* Adjust height based on the image */
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    border-radius: 50%; /* Rounded corners for the image */
+}
+
+.about-section .about-image img {
+    width: 100px; /* Ensure the image fills the container */
+    height: auto; /* Allow the image to adjust its height */
+    object-fit: cover; /* Cover the container with the image */
+    border-radius: 50px; /* Rounded corners for the image */
+}

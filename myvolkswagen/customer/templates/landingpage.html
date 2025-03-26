@@ -1,22 +1,48 @@
-{% extends "base.html" %}
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Volkswagen</title>
-    
+    <title>Document</title>
+    <link rel="stylesheet" href="/myvolkswagen/customer/static/css/landingpage.css">
+    <script src="/myvolkswagen/customer/static/js/landingpage.js"></script>
 </head>
 
-</html>
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>My Volkswagen</h1>
-                <p>My Volkswagen is your personal online customer area. It's where you can access all the services and information you need to keep your Volkswagen up and running.</p>
-            </div>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">inventory</a></li>
+            <li><a href="">About us</a></li>
+            <li><a href="">Contact us</a></li>
+        </ul>
+    </nav>
+    <div class="hero-section">
+        <div class="hero-image">
+            <img src="/myvolkswagen/customer/static/images/hero.jpg" alt="hero-image">
+        </div>
+        <div class="hero-content">
+            <h1>Welcome to vroom vault</h1>
+            <p>Your gateway to discovering premium cars effortlessly. Find your dream car today!</p>
+            <button>Start You journey</button>
+            
         </div>
     </div>
-{% endblock %}
+    <div class="about-section">
+        <div class="about-content">
+            <h1>Top Featured Cars</h1>
+            <p>Explore our curated selection of premium vehicles with exceptional features and performance.</p>
+            <h3>Luxury Redefined</h3>
+            <p>Experience unparalleled comfort and style with our premium car models.</p>
+            <h3>Innovative Technology</h3>
+            <p>Stay ahead with state-of-the-art features and cutting-edge innovation.</p>
+            <h3>Unmatched Performance</h3>
+            <p>Feel the thrill of driving with top-tier performance and power.</p>
+        </div>
+        <div class="about-image">
+            <img src="/myvolkswagen/customer/static/images/hero2.jpg" alt="about-car">
+        </div>
+    </div>
+</body>
+</html>
