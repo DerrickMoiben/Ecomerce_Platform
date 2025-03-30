@@ -325,6 +325,7 @@ nav ul li:last-child {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 10%;
 }
 
 .obtain-process .obtain-process-header {
@@ -376,4 +377,114 @@ nav ul li:last-child {
     line-height: 1.6;
     margin-bottom: 20px;
     text-align: center;
+}
+
+/* contact us section */
+.contact-us {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contact-us .contact-us-header {
+    margin: 80px auto;
+}
+
+.contact-us .contact-us-header h1 {
+    font-size: 2.5rem;
+}
+
+.contact-us .contact-us-header p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.contact-us .contact-us-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-us-content  h3 i {
+    background-color: rgb(112, 10, 4);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.contact-us-content  h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.contact-us-content  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
+/* footer section */
+/* Footer Section */
+.footer {
+    background-color: rgb(255, 240, 232);; /* Dark background for the footer */
+    color: rgb(22, 7, 7); /* White text for contrast */
+    padding: 20px 0; /* Add padding for spacing */
+    text-align: center; /* Center-align text */
+    display: flex; /* Use Flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center-align items horizontally */
+    gap: 20px; /* Add spacing between sections */
+}
+
+.footer p {
+    font-size: 1rem; /* Adjust font size */
+    margin: 0; /* Remove default margin */
+    padding-bottom: 10px; /* Add spacing below the text */
+}
+
+.footer .footer-row {
+    display: flex; /* Use Flexbox for row layout */
+    justify-content: center;
+    flex-direction: row;
+    gap: 50px; /* Add spacing between quick links and social links */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    width: 100%; /* Full width for the row */
+}
+
+.footer .quick-links ul,
+.footer .social-links ul {
+    flex-direction: row;
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    text-align: left; /* Align text to the left */
+}
+
+.footer .quick-links ul li,
+.footer .social-links ul li {
+    margin-bottom: 10px; /* Add spacing between list items */
+}
+
+.footer .quick-links ul li a,
+.footer .social-links ul li a {
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Adjust font size */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.footer .quick-links ul li a:hover,
+.footer .social-links ul li a:hover {
+    color: #f39c12; /* Change color on hover */
+}
+
+.footer .social-links ul li a i {
+    font-size: 1.5rem; /* Adjust icon size */
+    margin-right: 10px; /* Add spacing between icons */
 }
