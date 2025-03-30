@@ -259,17 +259,121 @@ nav ul li:last-child {
     color: black;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+
 }
 
 .what-our-customer-say .customer-header {
-    text-align: center;
-    margin: 50px auto;
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 60px auto;
 }
 
-.what-our-customer-say .customer-header h1  p{
-    font-size: 3rem;
+.what-our-customer-say .customer-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.what-our-customer-say .customer-body .customer-card {
+    background-color: rgb(112, 10, 4);
+    border-radius: 70px;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.what-our-customer-say .customer-body .customer-card .customer-card-image {
+   flex: 1;
+   overflow: hidden;
+}
+
+.what-our-customer-say .customer-body .customer-card .customer-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 70px 70px 0 0;
+}
+
+.what-our-customer-say .customer-body .customer-card h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.what-our-customer-say .customer-body .customer-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
     margin-bottom: 20px;
-    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+
+
+
+/* obtain process section */
+.obtain-process {
+    background-color: rgb(255, 240, 232);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.obtain-process .obtain-process-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 80px auto;
+}
+
+.obtain-process .obtain-process-header h1 {
+    font-size: 2.5rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.obtain-process .obtain-process-header p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.obtain-process .obtain-process-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-between;
+    gap: 100px;
+}
+
+.obtain-process .obtain-process-content .obtain-process-card {
+    background-color: rgb(255, 255, 255);
+    border-radius: 40px;
+    width: 400px;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.obtain-process .obtain-process-content .obtain-process-card h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.obtain-process .obtain-process-content .obtain-process-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: center;
 }
