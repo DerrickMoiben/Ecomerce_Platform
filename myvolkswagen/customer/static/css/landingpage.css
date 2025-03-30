@@ -3,7 +3,7 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-    background-color: #f5f5f5;
+    background-color: rgb(207, 217, 231);
     margin: 0;
     padding: 0;
 }
@@ -20,7 +20,6 @@ nav {
     padding: 1px 0;
     margin: 60px 0;
     border-radius: 50px;
-
 }
 
 nav ul {
@@ -50,8 +49,6 @@ nav ul li:last-child {
     align-items: right;
 }
 
-
-/* hero section */
 .hero-section {
     position: relative;
     width: 100%;
@@ -70,6 +67,7 @@ nav ul li:last-child {
     object-fit: cover;
     z-index: 0;
 }
+
 .hero-section .hero-content {
     position: absolute;
     top: 50%;
@@ -81,19 +79,19 @@ nav ul li:last-child {
 
 .hero-section .hero-content h1 {
     font-size: 3.5rem;
-    color:  rgb(207, 217, 231);
+    color: rgb(207, 217, 231);
     margin-bottom: 100px;
 }
 
 .hero-section .hero-content p {
     font-size: 1.5rem;
-    color:  rgb(207, 217, 231);
+    color: rgb(207, 217, 231);
     margin-bottom: 80px;
 }
 
 .hero-section .hero-content button {
     background-color: rgb(243, 54, 6);
-    color:  rgb(207, 217, 231);
+    color: rgb(207, 217, 231);
     padding: 10px 20px;
     border: lightblue;
     border-radius: 5px;
@@ -104,65 +102,174 @@ nav ul li:last-child {
 
 .hero-section .hero-content button:hover {
     background-color: rgb(243, 54, 6);
-    color:  rgb(207, 217, 231);
+    color: rgb(207, 217, 231);
 }
 
-
-
-/* About section */
 .about-section {
-    background-color: rgb(243, 54, 6); /* Red background */
-    width: 60%; /* Larger width to accommodate more content */
-    height: auto; /* Allow height to adjust based on content */
-    display: flex; /* Use Flexbox for layout */
-    justify-content: space-between; /* Space out text and image */
-    align-items: flex-start; /* Align items to the top */
-    border-radius: 20px; /* Rounded corners */
-    margin: 50px auto; /* Center the section horizontally and add vertical spacing */
-    padding: 40px; /* Add padding for spacing inside the section */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better appearance */
-    gap: 20px; /* Add spacing between text and image */
+    background-color: rgb(112, 10, 4);
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 20px;
+    margin: 50px auto;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    gap: 20px;
 }
 
-/* About text content */
 .about-section .about-content {
-    flex: 2; /* Take up more space for the text */
-    color: black; /* White text for contrast */
-    padding-right: 20px; /* Add spacing between text and image */
-    text-align: left; /* Align text to the left */
+    flex: 2;
+    color: black;
+    padding-right: 20px;
+    text-align: left;
     gap: 40px;
 }
 
+.about-section .about-content h1,
+.about-section .about-content h3 {
+    display: flex;
+    align-items: center;
+}
+
+.about-section .about-content h1 i,
+.about-section .about-content h3 i {
+    margin-right: 10px;
+    color: rgb(20, 20, 20);
+}
+
 .about-section .about-content h1 {
-    font-size: 3rem; /* Adjust heading size */
-    margin-bottom: 20px; /* Add spacing below the heading */
+    font-size: 3rem;
+    margin-bottom: 20px;
     font-family: 'Open Sans', sans-serif;
 }
 
 .about-section .about-content h3 {
-    font-size: 1.5rem; /* Adjust subheading size */
-    margin-top: 20px; /* Add spacing above subheadings */
-    margin-bottom: 10px; /* Add spacing below subheadings */
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .about-section .about-content p {
-    font-size: 1.2rem; /* Adjust paragraph size */
-    line-height: 1.6; /* Improve readability */
-    margin-bottom: 20px; /* Add spacing below paragraphs */
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
-/* About image */
 .about-section .about-image {
-    flex: 1; /* Smaller space for the image */
-    max-width: 400px; /* Limit the width of the image container */
-    height: auto; /* Adjust height based on the image */
-    overflow: hidden; /* Ensure the image doesn't overflow */
-    border-radius: 50%; /* Rounded corners for the image */
+    flex: 1;
+    max-width: 400px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
 }
 
 .about-section .about-image img {
-    width: 100px; /* Ensure the image fills the container */
-    height: auto; /* Allow the image to adjust its height */
-    object-fit: cover; /* Cover the container with the image */
-    border-radius: 50px; /* Rounded corners for the image */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+
+
+
+/* dream car */
+
+.dream-car{
+    background-color: rgb(255, 240, 232);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 5% 0;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    gap: 20px;
+}
+
+.dream-car .dream-car-content {
+    flex: 2;
+    color: black;
+    padding-right: 20px;
+    text-align: left;
+    gap: 40px;
+}
+.dream-car .dream-car-content h1,
+.dream-car .dream-car-content h3 {
+    display: flex;
+    align-items: center;
+}
+.dream-car .dream-car-content h1 i,
+.dream-car .dream-car-content h3 i {
+    margin-right: 10px;
+    color: rgb(20, 20, 20);
+}
+.dream-car .dream-car-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+.dream-car .dream-car-content h3 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.dream-car .dream-car-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.dream-car .dream-car-image {
+    flex: 1;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 20px;
+}
+.dream-car .dream-car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.dream-car .dream-car-image img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.dream-car .dream-car-content button {
+    background-color: rgb(243, 54, 6);
+    color: rgb(207, 217, 231);
+    padding: 10px 20px;
+    border: lightblue;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 5px;
+}
+
+
+
+
+/* what our cusomter say */
+.what-our-customer-say{
+    background-color:  rgb(255, 240, 232);
+    color: black;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.what-our-customer-say .customer-header {
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.what-our-customer-say .customer-header h1  p{
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
